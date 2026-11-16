@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Coloque este arquivo em .repo/local_manifests/roomservice.xml do source LOS 19.
+
+  Foi nomeado "roomservice.xml" de proposito: o roomservice.py so verifica
+  esse arquivo (alem do manifest principal) ao rodar "breakfast rhode".
+  Assim ele nao adiciona projetos duplicados.
+-->
+<manifest>
+    <remote name="kultrinhaa"
+            fetch="https://github.com/Kultrinhaa/" />
+    <remote name="themuppets"
+            fetch="https://github.com/TheMuppets/" />
+
+    <!-- Device trees (fork do usuario, branch lineage-19) -->
+    <project path="device/motorola/rhode"
+             name="android_device_motorola_rhode"
+             remote="github"
+             revision="lineage-20" />
+    <project path="device/motorola/sm6225-common"
+             name="device_motorola_sm6225-common"
+             remote="kultrinhaa"
+             revision="lineage-19" />
+
+    <!-- Dependencias declaradas nos lineage.dependencies das device trees -->
+    <project path="hardware/motorola"
+             name="android_hardware_motorola"
+             remote="github"
+             revision="lineage-19.1" />
+
+    <!--
+      Kernel: usa a branch oficial lineage-24.0 (o repo nao tem lineage-19.0).
+      Ela ja tem todos os configs que a tree usa, incluindo
+      vendor/ext_config/rhode-default.config.
+    -->
+    <project path="kernel/motorola/sm6225"
+             name="android_kernel_motorola_sm6225"
+             remote="github"
+             revision="lineage-24.0" />
+
+    <!--
+      Blobs: os do LOS 20 ja vem do stock Android 12
+      (S1SRS32.38-132-15), entao servem para o LOS 19.
+    -->
+    <project path="vendor/motorola/rhode"
+             name="proprietary_vendor_motorola_rhode"
+             remote="themuppets"
+             revision="lineage-20" />
+    <project path="vendor/motorola/sm6225-common"
+             name="proprietary_vendor_motorola_sm6225-common"
+             remote="themuppets"
+             revision="lineage-20" />
+</manifest>
